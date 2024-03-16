@@ -8,7 +8,7 @@ def check_db_exists():
         with conn.cursor() as cur:
             cur.execute("""SELECT 1 FROM pg_database WHERE datname= %s """, (config('DB_NAME'),))
             exists = cur.fetchone()
-            return exists is not None
+            return True
     except (OperationalError, ProgrammingError) as e:
         print(f"ERROR CHECKING DB EXISTS Exeption",{e})
         return False

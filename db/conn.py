@@ -10,6 +10,7 @@ def connection():
             user = config('DB_USER'), 
             password=config('DB_PASSWORD'),
             host=config('DB_HOST', default='localhost'),
+            dbname= config('DB_NAME')
             )
         return conn
     except Exception as e:
@@ -18,7 +19,7 @@ def connection():
 
 def close_conn(conn):
     try:
-        if conn is not None and conn.open:
+        if conn is not None and conn.open is False:
             conn.close()
     except (OperationalError,ProgrammingError) as er:
         print(f"Error closing the connection: {er}")

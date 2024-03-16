@@ -4,13 +4,14 @@ import logging
 
 
 def create_db():
+    """ Crea una base de datos con un nombre dado """
     conn = connection()
-    createdb = """CREATE DATABASE crafting_recipe;"""
+    createdb = f"""CREATE DATABASE {dbname};"""
     try:
         with conn.cursor() as cur:
             cur.execute(createdb)
             conn.commit()
-            print("Database has been created")
+            print("Database {dbname} has been created")
     except OperationalError as oe:
         logging.info(f"Operational error occurred while creating database:\n{oe}")
     except ProgrammingError as pe:

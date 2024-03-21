@@ -7,18 +7,18 @@ from decouple import config
 def main():
     """ Función principal que comprueba la existencia de una base de datos y la crea de ser necesarios """
     conn = connection()
-    check_db = check_db_exists()
-    dbname=config("DB_NAME")
-    
+    check_db = check_db_exists()  # Verifica si la base de datos existe
+
     try:
         # Check if the database exists
-        if not check_db_exists():
+        if not check_db():
             print("\nDatabase does not exist! Creating new database...\n")
-            create_db(db_name)
+            create_db()  # Crea la base de datos
         else:
-            print(f"\n{db_name} already exists!\n")
+            print(f"\n{config("DB_NAME")} already exists!\n")
     finally:
         conn.close()
+
 
 if __name__ == "__main__":
     main()

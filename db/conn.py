@@ -14,9 +14,10 @@ def connection():
             dbname="postgres"
         )
         conn.autocommit = True  # Establece autocomit en True para la creación de la base de datos
-        with conn.cursor() as curr:
-            curr.execute(f"CREATE DATABASE {dbname}")
-            print(f"La base de datos {dbname} ha sido creada exitosamente ")
+        #with conn.cursor() as curr:
+        #    curr.execute(f"CREATE DATABASE {dbname}")
+        #    print(f"La base de datos {dbname} ha sido creada exitosamente ")
+        return conn
     except OperationalError as oe:
         logging.info(f"El error {oe} se ha encontrado al momento de conectarse a la base de datos")
         return None

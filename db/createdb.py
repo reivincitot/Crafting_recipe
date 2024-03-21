@@ -6,7 +6,7 @@ from decouple import config
 
 def create_db():
     """ Crea una base de datos con un nombre dado """
-    conn = connection()
+    conn = connection(db_name="postgres")
     dbname = config("DB_NAME")
     createdb = f"""CREATE DATABASE {dbname};"""
     try:

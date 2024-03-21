@@ -4,7 +4,7 @@ from psycopg import OperationalError, ProgrammingError
 
 
 def check_db_exists():
-    conn = connection()
+    conn = connection(db_name="postgres")
     dbname = config("DB_NAME")
     try:
         with conn.cursor() as cur:

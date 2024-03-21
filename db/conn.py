@@ -4,19 +4,15 @@ from psycopg import OperationalError, ProgrammingError
 import logging
 
 
-def connection():
+def connection(db_name):
     try:
-        dbname = (config("DB_NAME"))
         conn = ps.connect(
             user=config("DB_USER"),
             password=config("DB_PASSWORD"),
             host=config("DB_HOST"),
-            dbname="postgres"
+            dbname=db_name
         )
         conn.autocommit = True  # Establece autocomit en True para la creación de la base de datos
-        #with conn.cursor() as curr:
-        #    curr.execute(f"CREATE DATABASE {dbname}")
-        #    print(f"La base de datos {dbname} ha sido creada exitosamente ")
         return conn
     except OperationalError as oe:
         logging.info(f"El error {oe} se ha encontrado al momento de conectarse a la base de datos")

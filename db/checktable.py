@@ -1,4 +1,4 @@
-from .conn import connection
+from db.conn import connection
 from psycopg import Error
 
 

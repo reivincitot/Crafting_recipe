@@ -5,6 +5,7 @@ from db.conn import connection
 from psycopg import Error
 from decouple import config
 from db.checktable import check_tables
+from db.createtables import create_table
 
 
 def main():
@@ -27,6 +28,8 @@ def main():
                 print(f"La tabla {table_name} existe en la base de datos {config("DB_NAME")}.")
             else:
                 print(f"La Tabla {table_name} no existe en la base de datos {config("DB_NAME")}")
+                create_table(config("DB_NAME"), table_name)
+                print(f"Tabla {table_name} creada exitosamente")
 
     except Error as e:
         logging.info(f"Un error ha ocurrido:", e)
